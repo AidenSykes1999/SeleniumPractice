@@ -5,9 +5,18 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+import java.time.LocalDate;
+
 public class WebDriverTests {
 
     private static WebDriver driver;
+
+
+    @BeforeEach
+    void setup(){
+        driver.get("http://news.ycombinator.com/");
+    }
+
 
     @BeforeAll
     static void setupAll(TestInfo testInfo){
@@ -18,19 +27,18 @@ public class WebDriverTests {
     @Test
     @DisplayName("Checking the webdriver works")
     void checkingThatTheWebDriverWorks(){
-        driver.get("http://news.ycombinator.com/");
         driver.findElement(By.linkText("past")).click();
-
         Assertions.assertEquals("https://news.ycombinator.com/front",driver.getCurrentUrl());
         }
 
     @Test
     @DisplayName("Checking that yesterday's date displays")
     void checkingPastDateIsDisplayed(){
-        driver.get("https://news.ycombinator.com/front");
-        String pastDate = driver.findElement(By.tagName("font")).getText().toString();
 
-        Assertions.assertEquals("2022-02-27",pastDate);
+        driver.findElement(By.linkText("past")).click();
+        String pastDate = driver.findElement(By.xpath("//font")).getText();
+
+        Assertions.assertEquals(LocalDate.now().minusDays(1).toString(),pastDate);
     }
 
         @AfterAll
