@@ -2,6 +2,8 @@ package com.sparta.as;
 
 import org.checkerframework.checker.units.qual.C;
 import org.junit.jupiter.api.*;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -135,6 +137,25 @@ void checkIfNeedsToBeLoggedIn(){
 
 
 }
+
+
+@ParameterizedTest
+@DisplayName("Test Each Button On the Main Page")
+@CsvSource({"new,https://news.ycombinator.com/newest"
+        , "comments,https://news.ycombinator.com/newcomments"
+
+})
+
+void testForEachButtonWorking(String value, String site){
+
+        driver.findElement(By.linkText(value)).click();
+        Assertions.assertEquals(site, driver.getCurrentUrl());
+
+
+}
+
+
+
 
 
         @AfterAll
