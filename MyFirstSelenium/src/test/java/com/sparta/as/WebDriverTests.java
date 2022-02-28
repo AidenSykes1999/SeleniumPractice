@@ -27,7 +27,7 @@ public class WebDriverTests {
 
     @BeforeAll
     static void setupAll(TestInfo testInfo){
-        System.setProperty("webdriver.chrome.driver","src/test/resources/chromedriver.exe");
+
         System.out.println(testInfo.getDisplayName());
         options = new ChromeOptions();
         options.addArguments("headless");
@@ -71,15 +71,6 @@ public class WebDriverTests {
         driver.findElement(By.name("q")).sendKeys("Java", Keys.ENTER);
     }
 
-
-    @Test
-    @DisplayName("Managing settings for the webdriver")
-    void managingSettingsForTheWebdriver(){
-        driver.findElement(By.linkText("past")).click();
-        driver.navigate().forward();
-        driver.navigate().back();
-        System.out.println(driver.getCurrentUrl());
-    }
 
     @Test
     void changingTabs(){
