@@ -24,7 +24,14 @@ public class WebDriverTests {
         Assertions.assertEquals("https://news.ycombinator.com/front",driver.getCurrentUrl());
         }
 
+    @Test
+    @DisplayName("Checking that yesterday's date displays")
+    void checkingPastDateIsDisplayed(){
+        driver.get("https://news.ycombinator.com/front");
+        String pastDate = driver.findElement(By.tagName("font")).getText().toString();
 
+        Assertions.assertEquals("2022-02-27",pastDate);
+    }
 
         @AfterAll
     static void tearDownAll(){
