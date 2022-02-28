@@ -1,17 +1,23 @@
 package com.sparta.as;
 
+import org.checkerframework.checker.units.qual.C;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeDriverService;
+import org.openqa.selenium.chrome.ChromeOptions;
 
+import java.io.File;
+import java.io.IOException;
 import java.time.LocalDate;
 
 public class WebDriverTests {
 
     private static WebDriver driver;
-
+    private static ChromeOptions options;
+    private static ChromeDriverService service;
 
     @BeforeEach
     void setup(){
@@ -21,8 +27,25 @@ public class WebDriverTests {
 
     @BeforeAll
     static void setupAll(TestInfo testInfo){
+        System.setProperty("webdriver.chrome.driver","src/test/resources/chromedriver.exe");
         System.out.println(testInfo.getDisplayName());
-        driver = new ChromeDriver();
+        options = new ChromeOptions();
+        options.addArguments("headless");
+
+        service = new ChromeDriverService
+                .Builder()
+                .usingDriverExecutable(new File("chromedriver.exe"))
+                .usingAnyFreePort()
+                .build();
+
+
+        try {
+            service.start();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        driver = new ChromeDriver(options);
+
     }
 
     @Test
@@ -73,6 +96,9 @@ public class WebDriverTests {
             }
         }
     }
+
+
+
 
 
 
