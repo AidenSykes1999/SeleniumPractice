@@ -10,7 +10,7 @@ public class HomePage {
     By commentsLink = new By.ByLinkText("comments");
     By past = new By.ByLinkText("past");
     By logIn = new By.ByLinkText("login");
-    
+
     WebDriver webDriver; // Home page only!!!    By comments = new By.ByLinkText("comments"); //elements of the page you want to interact with    By past = new By.ByLinkText("past");
     public HomePage(WebDriver driver) {
         this.webDriver = driver;
