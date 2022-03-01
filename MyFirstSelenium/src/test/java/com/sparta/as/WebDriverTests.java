@@ -140,13 +140,13 @@ void checkIfNeedsToBeLoggedIn(){
 
 
 @ParameterizedTest
-@DisplayName("Test Each Button On the Main Page")
+@DisplayName("Test Buttons On the Main Page")
 @CsvSource({"new,https://news.ycombinator.com/newest"
         , "comments,https://news.ycombinator.com/newcomments"
 
 })
 
-void testForEachButtonWorking(String value, String site){
+void testForButtonWorking(String value, String site){
 
         driver.findElement(By.linkText(value)).click();
         Assertions.assertEquals(site, driver.getCurrentUrl());
