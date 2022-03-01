@@ -63,10 +63,18 @@ public class DemoQATest
 
 
     @Test
-    @DisplayName("Checking the webdriver works")
-    void checkingThatTheWebDriverWorks(){
-        driver.findElement(By.name("Elements")).click();
+    @DisplayName("Checking that clicking on the tiles brings you to their page")
+    void checkingThatClickingOnTilesWorks(){
+        driver.findElement(By.xpath("//*[@id=\"app\"]/div/div/div[2]/div/div[1]/div/div[3]/h5")).click();
         Assertions.assertEquals("https://demoqa.com/elements",driver.getCurrentUrl());
+    }
+
+    @Test
+    @DisplayName("Checking that the textbox page can be accessed starting from the homepage")
+    void checkingThatTextboxPageCanBeReached(){
+        driver.findElement(By.xpath("//*[@id=\"app\"]/div/div/div[2]/div/div[1]/div/div[3]/h5")).click();
+        driver.findElement(By.xpath("//*[@id=\"item-0\"]/span")).click();
+        Assertions.assertEquals("https://demoqa.com/text-box",driver.getCurrentUrl());
     }
 
 
