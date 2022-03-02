@@ -1,11 +1,23 @@
 package com.sparta.as.cucumber;
 
+import com.sparta.as.pom.pages.HomePage;
+import com.sparta.as.pom.pages.POMUtils;
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+
 public class StepDefs {
 
     private static WebDriver driver;
     private static ChromeOptions options;
     private static HomePage homePage;
-    private static LogInPage logInPage;
+    private static POMUtils logInPage;
 
     @BeforeAll
     static void setUp() {
